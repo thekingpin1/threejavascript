@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+	<body>
+		<script src="three.js"></script>
+		<script>
+			const scene = new THREE.Scene();
+			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+			const renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			mesh = new THREE.Mesh(
+					new THREE.BoxGeometry( 100, 100, 100 ),
+					new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } )
+				);
+				scene.add( mesh );
+
+				const mesh2 = new THREE.Mesh(
+					new THREE.BoxGeometry( 80, 80, 80 ),
+					new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } )
+				);
+				mesh2.position.set( 100, 100,100 );
+				mesh.add( mesh2 );
+
+				const mesh3 = new THREE.Mesh(
+					new THREE.BoxGeometry( 20, 20, 20 ),
+					new THREE.MeshBasicMaterial( { color: 0x0000ff, wireframe: true } )
+				);
+				mesh3.position.set( -50, 0, 0 )
+				mesh2.add( mesh3 );
+
+				const mesh4 = new THREE.Mesh(
+					new THREE.CylinderGeometry( 5, 5, 20 ),
+					new THREE.MeshBasicMaterial( { color: 0x0000ff, wireframe: true } )
+				);
+				mesh3.position.set( 0, 0, 0 )
+				mesh2.add( mesh4 );
+
+				const mesh5 = new THREE.Mesh(
+					new THREE.CylinderGeometry( 10, 0, 30 ),
+					new THREE.MeshBasicMaterial( { color: 0x0000ff, wireframe: true } )
+				);
+				mesh3.position.set( 50, 0, 0 )
+				mesh2.add( mesh5 );
+				//
+
+			camera.position.z = 350;
+
+			const animate = function () {
+				requestAnimationFrame( animate );
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+		</script>
+	</body>
+</html>
